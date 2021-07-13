@@ -1,0 +1,32 @@
+1. django-admin startproject django_project
+2. cd django_project
+3. python manage.py runserver
+4. python manage.py startapp blog
+5. python manage.py makemigrations
+6. python manage.py migrate
+7. python manage.py createsuperuser
+
+(python manage.py sqlmigrate blog 0001)  to check sql command
+------------------------------------------------------------------
+(python manage.py shell) -> we can insert some stuff into the db
+>>> from blog.models import Post
+>>> from django.contrib.auth.models import User
+>>> User.objects.all()
+<QuerySet [<User: kuba>, <User: monika>]>
+>>> User.objects.first()
+<User: kuba>
+>>> User.objects.filter(username='kuba')
+<QuerySet [<User: kuba>]>
+>>> User.objects.filter(username='kuba').first()
+<User: kuba>
+>>> user.id
+1
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1 = Post(title='Blog 1', content='First content', author=user)
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1.save()
+>>> Post.objects.all()
+<QuerySet [<Post: Blog 1>]>     <- human readible thanks to      def __str__(self):  return self.title
+
